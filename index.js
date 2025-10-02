@@ -130,7 +130,7 @@ client.on('messageCreate', async message => {
       message.channel.send('Je pense que vous avez pris un verre de trop, je ne vois pas de quel quête vous parlez.');
     }
   }
-  if(message.content.startsWith('!edit') || message.content.startsWith('!e')){ // !m 02/09/2025 03/09/2025 16h00 'TOA'  --> remplace la ligne 02/09/2025 par la nouvelle donné
+  if(message.content.startsWith('!edit') || message.content.startsWith('!e')){
     const canModify = modifyAlarm(message.content, message.author.id,client);
     if(canModify){
       message.channel.send('C’est noté ! L’aventure attendra encore un peu.')
