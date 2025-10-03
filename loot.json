@@ -59,6 +59,12 @@
             "name" : "Ration de survie",
             "category" : "provision",
             "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"10",
+            "name" : "La moustache de Nerium",
+            "category" : "curse",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
         }
     ]
 }

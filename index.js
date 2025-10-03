@@ -23,7 +23,25 @@ setInterval(() => {
 }, 60000);
 
 client.on('messageCreate', async message => {
-  
+  if (message.content.toLowerCase().includes("nerium")) {
+        message.react("❤️").catch(console.error);
+        message.react("1140344965654921341").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("stolas")) {
+        message.react("1223755213953962155").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("thé")) {
+        message.react("798904413787258880").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("sac")) {
+        message.react("1279811862934061096").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("critique")) {
+        message.react("807721226293870642").catch(console.error);
+  }
+  if ((message.content.toLowerCase().includes("mimic")) || ((message.content.toLowerCase().includes("salade")))) {
+        message.react("1284922799948959834").catch(console.error);
+  }
   //Help
   if(message.content === '!rolly' || message.content === '!help') {
     const helpEmbed = new EmbedBuilder()
@@ -141,7 +159,7 @@ client.on('messageCreate', async message => {
   }
   if(message.content.startsWith('!loot') || message.content.startsWith('!l')){
     const haveCategory = message.content.split(' ');
-    const categoriesDisponibles = ["arme", "armure", "potion", "équipement","récolte","trésor","monstre","provision"];
+    const categoriesDisponibles = ["arme", "armure", "potion", "équipement","récolte","trésor","monstre","provision","curse"];
     let loot;
     if (haveCategory.length === 1) {
         loot = getLoot();
@@ -193,6 +211,9 @@ client.on('messageCreate', async message => {
           break;
         case "monstre":
           imageFile = "./asset/monstre.png";
+          break;
+        case "curse":
+          imageFile = "./asset/nerium.jpg";
           break;
         default:
             imageFile = null;
