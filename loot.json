@@ -1,0 +1,70 @@
+{
+    "loot" :[
+        {
+            "id" :"0",
+            "name" : "Potion de soins légers",
+            "category" : "potion",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"1",
+            "name" : "Potion de défense",
+            "category" : "potion",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"2",
+            "name" : "Epée rouillé",
+            "category" : "arme",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"3",
+            "name" : "Armure en cuir",
+            "category" : "armure",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"4",
+            "name" : "Corde",
+            "category" : "équipement",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+         {
+            "id" :"5",
+            "name" : "Potion d'Attaque",
+            "category" : "potion",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"6",
+            "name" : "Champignon Hallucinogène",
+            "category" : "récolte",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"7",
+            "name" : "Croc de loup",
+            "category" : "monstre",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"8",
+            "name" : "20 PO",
+            "category" : "trésor",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"9",
+            "name" : "Ration de survie",
+            "category" : "provision",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        },
+        {
+            "id" :"10",
+            "name" : "La moustache de Nerium",
+            "category" : "curse",
+            "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam scelerisque nulla ut augue tincidunt rutrum. "
+        }
+    ]
+}

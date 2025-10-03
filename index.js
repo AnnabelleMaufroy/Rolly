@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const dotenv = require('dotenv');
 const {addAlarm, checkAlarm, programAlarm, deleteAlarm, modifyAlarm} = require('./alarm')
 const{setIDChannel, verifyFile} =require('./channel');
+const {getLoot} = require('./loot');
 dotenv.config();
 
 
@@ -22,7 +23,25 @@ setInterval(() => {
 }, 60000);
 
 client.on('messageCreate', async message => {
-  
+  if (message.content.toLowerCase().includes("nerium")) {
+        message.react("❤️").catch(console.error);
+        message.react("1140344965654921341").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("stolas")) {
+        message.react("1223755213953962155").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("thé")) {
+        message.react("798904413787258880").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("sac")) {
+        message.react("1279811862934061096").catch(console.error);
+  }
+  if (message.content.toLowerCase().includes("critique")) {
+        message.react("807721226293870642").catch(console.error);
+  }
+  if ((message.content.toLowerCase().includes("mimic")) || ((message.content.toLowerCase().includes("salade")))) {
+        message.react("1284922799948959834").catch(console.error);
+  }
   //Help
   if(message.content === '!rolly' || message.content === '!help') {
     const helpEmbed = new EmbedBuilder()
@@ -140,12 +159,85 @@ client.on('messageCreate', async message => {
   }
   if(message.content.startsWith('!loot') || message.content.startsWith('!l')){
     const haveCategory = message.content.split(' ');
-    if(haveCategory.length = 0){
-      // !loot
-      getLoot();
-    }else{
-      //!loot category
-      getLoot(haveCategory[1]);
+    const categoriesDisponibles = ["arme", "armure", "potion", "équipement","récolte","trésor","monstre","provision","curse"];
+    let loot;
+    if (haveCategory.length === 1) {
+        loot = getLoot();
+    }
+    else if (haveCategory[1].toLowerCase() === "catégories") {
+      const lootEmbed = new EmbedBuilder()
+        .setTitle('Catégories disponibles :')
+        .setColor(0x1abc9c)
+        .setDescription(categoriesDisponibles.map(c => `- ${c}`).join("\n"));
+        message.channel.send({ embeds: [lootEmbed] });
+        return;
+    }
+    else if (categoriesDisponibles.includes(haveCategory[1].toLowerCase())) {
+        loot = getLoot(haveCategory[1].toLowerCase());
+    }
+    else {
+        const lootEmbed = new EmbedBuilder()
+          .setTitle('Catégories disponibles :')
+          .setColor(0x1abc9c)
+          .setDescription(categoriesDisponibles.map(c => `- ${c}`).join("\n"));
+        message.channel.send({ embeds: [lootEmbed] });
+        return;
+    }
+    const lootName = loot.name;
+    const lootCategory = loot.category;
+    const lootDescr = loot.description;
+    let imageFile;
+    switch (lootCategory) {
+        case "arme":
+            imageFile = "./asset/arme.png";
+            break;
+        case "armure":
+            imageFile = "./asset/armure.png";
+            break;
+        case "potion":
+            imageFile = "./asset/potion.png";
+            break;
+        case "équipement":
+            imageFile = "./asset/equipement.png";
+            break;
+        case "trésor":
+          imageFile = "./asset/tresor.png";
+          break;
+        case "provision":
+          imageFile = "./asset/provision.png";
+          break;
+        case "récolte":
+          imageFile = "./asset/recolte.png";
+          break;
+        case "monstre":
+          imageFile = "./asset/monstre.png";
+          break;
+        case "curse":
+          imageFile = "./asset/nerium.jpg";
+          break;
+        default:
+            imageFile = null;
+    }
+    const lootEmbed = new EmbedBuilder()
+      .setTitle(`${lootName}`)
+      .setColor(0x1abc9c)
+      .addFields(
+            { 
+                name: "Catégories : ", 
+                value: `${lootCategory}`, 
+                inline: false 
+            },
+            { 
+                name: "Description : ", 
+                value: `${lootDescr}`, 
+                inline: false 
+            }
+      )
+      if (imageFile) {
+        lootEmbed.setThumbnail(`attachment://${imageFile.split('/').pop()}`);
+        message.channel.send({ embeds: [lootEmbed], files: [imageFile] });
+    } else {
+        message.channel.send({ embeds: [lootEmbed] });
     }
   }
 
