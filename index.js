@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const dotenv = require('dotenv');
 const {addAlarm, checkAlarm, programAlarm, deleteAlarm, modifyAlarm} = require('./alarm')
 const{setIDChannel, verifyFile} =require('./channel');
+const {getLoot} = require('./loot');
 dotenv.config();
 
 
@@ -140,12 +141,82 @@ client.on('messageCreate', async message => {
   }
   if(message.content.startsWith('!loot') || message.content.startsWith('!l')){
     const haveCategory = message.content.split(' ');
-    if(haveCategory.length = 0){
-      // !loot
-      getLoot();
-    }else{
-      //!loot category
-      getLoot(haveCategory[1]);
+    const categoriesDisponibles = ["arme", "armure", "potion", "équipement","récolte","trésor","monstre","provision"];
+    let loot;
+    if (haveCategory.length === 1) {
+        loot = getLoot();
+    }
+    else if (haveCategory[1].toLowerCase() === "catégories") {
+      const lootEmbed = new EmbedBuilder()
+        .setTitle('Catégories disponibles :')
+        .setColor(0x1abc9c)
+        .setDescription(categoriesDisponibles.map(c => `- ${c}`).join("\n"));
+        message.channel.send({ embeds: [lootEmbed] });
+        return;
+    }
+    else if (categoriesDisponibles.includes(haveCategory[1].toLowerCase())) {
+        loot = getLoot(haveCategory[1].toLowerCase());
+    }
+    else {
+        const lootEmbed = new EmbedBuilder()
+          .setTitle('Catégories disponibles :')
+          .setColor(0x1abc9c)
+          .setDescription(categoriesDisponibles.map(c => `- ${c}`).join("\n"));
+        message.channel.send({ embeds: [lootEmbed] });
+        return;
+    }
+    const lootName = loot.name;
+    const lootCategory = loot.category;
+    const lootDescr = loot.description;
+    let imageFile;
+    switch (lootCategory) {
+        case "arme":
+            imageFile = "./asset/arme.png";
+            break;
+        case "armure":
+            imageFile = "./asset/armure.png";
+            break;
+        case "potion":
+            imageFile = "./asset/potion.png";
+            break;
+        case "équipement":
+            imageFile = "./asset/equipement.png";
+            break;
+        case "trésor":
+          imageFile = "./asset/tresor.png";
+          break;
+        case "provision":
+          imageFile = "./asset/provision.png";
+          break;
+        case "récolte":
+          imageFile = "./asset/recolte.png";
+          break;
+        case "monstre":
+          imageFile = "./asset/monstre.png";
+          break;
+        default:
+            imageFile = null;
+    }
+    const lootEmbed = new EmbedBuilder()
+      .setTitle(`${lootName}`)
+      .setColor(0x1abc9c)
+      .addFields(
+            { 
+                name: "Catégories : ", 
+                value: `${lootCategory}`, 
+                inline: false 
+            },
+            { 
+                name: "Description : ", 
+                value: `${lootDescr}`, 
+                inline: false 
+            }
+      )
+      if (imageFile) {
+        lootEmbed.setThumbnail(`attachment://${imageFile.split('/').pop()}`);
+        message.channel.send({ embeds: [lootEmbed], files: [imageFile] });
+    } else {
+        message.channel.send({ embeds: [lootEmbed] });
     }
   }
 
